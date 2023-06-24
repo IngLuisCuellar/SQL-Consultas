@@ -34,4 +34,4 @@ SELECT * FROM tabla_de_productos WHERE SABOR IN ('Mango', 'UVA'); # Es igual que
 -- Consultas con like --
 
 SELECT * FROM tabla_de_productos WHERE SABOR LIKE '%manzana' AND ENVASE LIKE '%PET';
-SELECT * FROM tabla_de_clientes WHERE NOMBRE LIKE '%ez'; #Entrega todos los clientes que terminen con 'ez'
+SELECT * FROM tabla_de_clientes WHERE NOMBRE LIKE '%ez'; #Entrega todos los clientes que terminen con 'eZ'
