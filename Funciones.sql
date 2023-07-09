@@ -1,0 +1,82 @@
+-- w3schools.com -> pagina par explorar funciones --
+
+-- Funciones de Strings--
+
+SELECT LTRIM('     MySQL es facil     ');
+
+SELECT RTRIM('     MySQL es facil     ');
+
+SELECT TRIM('     MySQL es facil     ');
+
+SELECT CONCAT('MySQL ', 'es ', 'facil!', '\nNo lo crees?');
+
+SELECT UPPER('mysql es una bd interesante');
+
+SELECT LOWER('MYSQL ES UNA BD INTERESANTE');
+
+SELECT SUBSTRING('mysql es una base de datos interesante.', 14, 4);
+
+-- Usando la base de datos -- 
+
+SELECT CONCAT(NOMBRE, ' ', DNI) AS CLIENTES FROM tabla_de_clientes;
+
+SELECT CONCAT(NOMBRE, LOWER(' UBICADO EN LA DIRECCIÓN '), DIRECCION_1, ' ',
+DIRECCION_2, ' ', BARRIO, ' ', CIUDAD, ' ', ESTADO) AS CLIENTES FROM tabla_de_clientes;
+
+-- Funciones de Fecha --
+
+SELECT CURDATE();
+
+SELECT CURRENT_TIMESTAMP();
+
+SELECT YEAR(CURRENT_TIMESTAMP());
+
+SELECT MONTHNAME(CURRENT_TIMESTAMP());
+
+SELECT DATEDIFF(CURRENT_TIMESTAMP(), '2001-01-29') AS DIAS_VIVIDOS;
+
+SELECT CURRENT_TIMESTAMP() AS DIA_HOY,
+DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 MONTH) AS RESULTADO; 
+
+-- Usando en la base de datos --
+
+SELECT DISTINCT FECHA_VENTA, DAYNAME(FECHA_VENTA) AS DIA,
+MONTHNAME(FECHA_VENTA) AS MES, YEAR(FECHA_VENTA) AS AÑO
+FROM facturas;
+
+#Muestra edad actual de los clientes
+SELECT NOMBRE, TIMESTAMPDIFF(YEAR, FECHA_DE_NACIMIENTO, CURRENT_TIMESTAMP())
+AS EDAD
+FROM tabla_de_clientes;
+
+
+-- Funciones matemáticas -- 
+
+SELECT (57-545+5452+25)/52 * 3 AS RESULTADO;
+
+SELECT CEILING(23.98);
+SELECT FLOOR(23.98);
+
+#Numero aleatorio
+
+SELECT RAND() AS RESULTADO;
+
+SELECT ROUND(210.15514555,3);
+
+-- Usando la base de datos -- 
+
+SELECT NUMERO, CANTIDAD, PRECIO,
+ CANTIDAD * PRECIO AS FACTURACION
+FROM items_facturas;
+
+SELECT NUMERO, CANTIDAD, PRECIO,
+ ROUND(CANTIDAD * PRECIO , 2) AS FACTURACION
+FROM items_facturas;
+
+
+SELECT YEAR(FECHA_VENTA), FLOOR(SUM(IMPUESTO * (CANTIDAD * PRECIO))) 
+AS RESULTADO
+FROM facturas F
+INNER JOIN items_facturas IFa ON F.NUMERO = IFa.NUMERO
+WHERE YEAR(FECHA_VENTA) = 2016
+GROUP BY YEAR(FECHA_VENTA);
